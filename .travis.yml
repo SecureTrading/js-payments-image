@@ -1,0 +1,16 @@
+env:
+  global:
+    - DOCKER_BRANCH=${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH}
+    - DOCKER_BRANCH=${DOCKER_BRANCH//[\@\/]/-}
+language: node_js
+services:
+  - docker
+jobs:
+  include:
+    - stage: "Docker build"
+      script:
+        - docker pull "securetrading1/js-payments-image"
+        - docker build . --tag "securetrading1/js-payments-image:$DOCKER_BRANCH"
+deploy:
+  provider: script
+  script: bash docker_push
