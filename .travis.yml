@@ -1,5 +1,7 @@
 env:
   global:
+    - secure: ml7bvRVzGvHrYEv+GC6nWTnLttg2gzlIRNWqGZ1BNJdkgwe3jha3rmSY/9FQFtnL7RJTPW+toMuvGamTg29IrpsbZkvk7RmmaMLnZpuuuj2yXoz8eeY7s2cihB+zoUGb6Agi0gmlZKIFUvCTS15125bgHdNMxuEsVCxDgOU2qNKwtiI2mq9l569zgexnqCouK+AoTOvRKJkBKI7wOL1OxWyIkao1hm2wfLvhIM7jyKX2aUNsdhO0d3bFcko5Hoc05vYA/l8/TJKmbPGtKxnfZES/JFh1qFjoJKSg5ExRwLb8o8AeMjBgiyXORgibKRvMxSHq2v9BxUsrBJgf80zg2p6i7oV/J6/ykq59FFmYLvWFdxdHtAFEursylK5gjHD1GXDCmWsMKYsDIZvf39HoYsSZwXtQem6KKkIm0GeitOrSgpJKxz4WI27I0O1JbuRPypFC5h2sRtvqotBijpmweXkdvbwqwIiSGiEJQFrHscBAEcN2j5m9cI2R7rf4wpOPxAS/FAQNUN9EV0IdGDduNOcfISxTu25paNAe0QURaW0CFaspLwpKtk2F1IxwtQiVhwChKRzRfKHxEMj+faDd1tt6dsZ1xNJ+kjfCRUviYZGvnk7UpbGvN+uh0dfR5nS+mQ7Irpimkei1z/qKobjkbjK8ZX7g7bJBJUJ7aaMC/UA= # Docker Username
+    - secure: nTQlRW8ZtNgxW1suZ6oWdTNeZRN7ZYaSPDetqgNiLC8sRDxSeBIUZml1MBEU1z1Ynk+6Ob7Zuo/6UzcK40sIMF/RmcmbYXFJZ6omQ1/UCXqVIlEd4RFryS+e7LUZ1nMp8qMjPtCMU8J42AWY9tJXJE71Qib/HCw4ewJKOc0H+TK4Yu1/HOCrGj1P+xom9zEaYkwgHeNubVwVVicE5ipI2GThxc3JXFbTk1A9yXyAlZp3LxZBujspV63zxI3BoTbBJGgR92y2Es7pzuBOcDM8n6YMWMF7h8J7hkeipY5tL+7RLBMpIVkEcYBCEemapIVIKNFPENvA4PztZ0rLk6fExxYHj1quWXY9Fx/LMUgqu+RIuDROK5UcFZiRX5rhPHppYFGQxvsJqQv/uC/cHTAt9t7K0mwhY39JNpbhQuVCLQRnGWuxIb4meKRDBU0P8MLJeM6ARbtn2qYkFRaAniaGITHEuqkN/N46ssWSevHmXNougVaviccrtJXeKP8zTCdeLr090s1+g+6AdIpkAvqF8YC/gSUvaiPhDy98L+3e9XYZmuRvwqLC0kLd9KepcIl+TrqzY8eAr7PcLP7Ad9HIIUfQQuFdZa+Jx+yRnhyCtdvGLWCrJzb5g36fC/jjQTEGtSiKgXtl5fwsVmNOrLNHCNnyEUhnj7Q4jy09P49oM2w= # Docker password
     - DOCKER_BRANCH=${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH}
     - DOCKER_BRANCH=${DOCKER_BRANCH//[\@\/]/-}
 language: node_js
@@ -7,7 +9,7 @@ services:
   - docker
 jobs:
   include:
-    - stage: "Docker build"
+    - stage: Docker build
       script:
         - docker pull "securetrading1/js-payments-image"
         - docker build . --tag "securetrading1/js-payments-image:$DOCKER_BRANCH"
